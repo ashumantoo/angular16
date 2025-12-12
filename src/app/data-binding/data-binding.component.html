@@ -5,9 +5,20 @@
   <!-- ngModel two way binding -->
   <input type="text" placeholder="Person name" [(ngModel)]="newPersonName">
   <br>
+
   <!-- Property binding = disabled, event binding = click -->
-  <button [disabled]="disableButton" (click)="onNewPersonOnlie()">Add New</button>
+  <button [disabled]="disableButton" (click)="onNewPersonOnline()">Add New</button>
+
   <!-- String interpolation -->
-  <p>Total online persons are: {{totalPeopleOnline}}</p> 
-  <p>Newly added person name is: {{newPersonName}}</p>
+  <p [ngStyle]="getStyle()">Total online persons are: {{totalPeopleOnline}}</p>
+  <p *ngIf="isAdded; else noPersonAdded">Newly added person name is: {{newPersonName}}</p>
+  <div *ngFor="let item of addedPersons; let i = index">{{i+1}} {{item}}</div>
+
+  <!-- One approach to handle the else -->
+  <!-- <p *ngIf="!isAdded">No new person is online</p> -->
+
+  <!-- Another approach to handle the else using ng-template -->
+  <ng-template #noPersonAdded>
+    <p>No new person is online</p>
+  </ng-template>
 </div>

@@ -1,0 +1,37 @@
+/***************************************************************************************************************
+  -> Data Binding:- It is a way to bind the data (variables, array, object etc) defined your typescript code to 
+    the your html template vice versa.
+
+  -> There are 4 ways to acheive the data binding in Angular
+    1. String interpolation: {{}}
+    2. Property Binding    : [property]="data"
+    3. Event Binding       : (event)="expression"    (expression = function)
+    4. Two Way Binding     : [(ngModel)] = "data" 
+ */
+
+
+
+/************************************************************************************************************
+                                  DIRECTIVES
+ ************************************************************************************************************                                 
+  -> Directives are the class that adds additional behaviour to elements in your application
+
+  -> There are 3 different types of Directive in Angular
+
+     1. Compoenent Directive - used with the template, most common used directives @Component 
+
+     2. Attribute Directives - 	Change the appearance or behavior of an element, component, or another directive.
+        Built in Attribute Directives - 
+
+        NgModel: Adds and removes a set of CSS classes.  
+        NgClass: Adds and removes a set of HTML styles.
+        NgStyle: Adds two-way data binding to an HTML form element.
+
+     3. Structural Directives - Structural directives are responsible for shaping or reshaping the DOM's layout by 
+                                adding, removing, or manipulating elements based on conditions. They are identified 
+                                by an asterisk (*) prefix in the template shorthand syntax.
+        Built In Structural Directives 
+        *ngIf
+        *ngFor
+        *ngSwitch
+*/

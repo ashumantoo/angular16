@@ -20,7 +20,9 @@ import { Component, OnInit } from '@angular/core';
 export class DataBindingComponent implements OnInit {
   totalPeopleOnline = 10;
   disableButton = true;
-  newPersonName = "Mantoo";
+  newPersonName = "";
+  isAdded = false;
+  addedPersons: string[] = [];
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -28,12 +30,20 @@ export class DataBindingComponent implements OnInit {
     }, 2000);
   }
 
-  onNewPersonOnlie() {
+  onNewPersonOnline() {
     this.totalPeopleOnline += 1;
-    this.newPersonName = "";
+    this.isAdded = true;
+    this.addedPersons.push(this.newPersonName);
   }
 
   onAddNewPerson(event: any) {
     this.newPersonName = event.target.value;
+  }
+
+  getStyle() {
+    return {
+      'background-color': this.isAdded ? 'green' : 'red',
+      'color': this.isAdded ? 'white' : 'black'
+    }
   }
 }

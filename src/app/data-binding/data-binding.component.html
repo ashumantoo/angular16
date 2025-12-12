@@ -1,0 +1,13 @@
+<div>
+  <!-- Property binding = input -->
+  <!-- <input type="text" placeholder="Person name" (input)="onAddNewPerson($event)"> -->
+
+  <!-- ngModel two way binding -->
+  <input type="text" placeholder="Person name" [(ngModel)]="newPersonName">
+  <br>
+  <!-- Property binding = disabled, event binding = click -->
+  <button [disabled]="disableButton" (click)="onNewPersonOnlie()">Add New</button>
+  <!-- String interpolation -->
+  <p>Total online persons are: {{totalPeopleOnline}}</p> 
+  <p>Newly added person name is: {{newPersonName}}</p>
+</div>

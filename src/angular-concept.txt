@@ -35,3 +35,82 @@
         *ngFor
         *ngSwitch
 */
+
+
+/********************************************************************************************************************
+                                  COMMUNICATION BETWEEN COMPONENTS
+*********************************************************************************************************************
+ -> Google documentation link : https://v16.angular.io/guide/component-interaction
+
+ -> Pass data from parent to child using input binding                       : @Input() decorator
+
+ -> Parent listens for child event using EventEmitter                        : @Output() decorator
+
+ -> Parent interatcts with child using local variables or templage variables : #variableName
+
+ -> Parent calls an @ViewChild() decorator
+
+ -> Parent and child component can communicate using a service
+*/
+
+
+
+/*********************************************************************************************************************
+                                         @ViewChild() decorator
+**********************************************************************************************************************
+ -> Used get a reference to the first matching element, component, or directive from within a component's (view). 
+
+ -> This allows the parent component class(typescript file) to access and interact with the child's properties, methods, 
+    or native DOM element directly.
+
+ -> Access Timing (ngAfterViewInit): The queried element is not available immediately during the component's 
+    construction or ngOnInit lifecycle hook. You must access it within the ngAfterViewInit lifecycle hook, which is 
+    called after Angular has fully initialized the component's view.
+*/
+
+
+
+
+
+/*********************************************************************************************************************
+                                         @ContentChild() decorator
+**********************************************************************************************************************
+ -> @ContentChild decorator (or the signal-based contentChild() function) is used to access the first matching element 
+    or a component that has been projected into a component using content projection (the <ng-content> tag). 
+
+ -> The property decorated with @ContentChild is initialized just before the ngAfterContentInit lifecycle hook, 
+    so you must access it within or after this hook.
+  
+*/
+
+
+
+
+
+/*********************************************************************************************************************
+                                            VIEW ENCAPSULATION
+**********************************************************************************************************************
+ -> It is a mechanism that determines how the styles defined within a component are applied and how they interact with the 
+    rest of the application's styles.
+
+ -> It has 3 different options:-
+    a) ViewEncapsulation.Emulated (Default) - Styles defined under the component doesn't affect the other component Styles
+                                              but styles defined under the global styles will might sitll affect.
+    b) ViewEncapsulation.ShadowDom - Style will only apply to the component itself - uses ture shadow dom technique
+
+    c) ViewEncapsulation.None - No restriction any styles can be applied to any compoent's view 
+*/
+
+
+
+
+/*********************************************************************************************************************
+                                            <ng-content>
+**********************************************************************************************************************
+-> It is an Angular element that is used for content projection.
+
+-> It is a technique that allows you to insert a content from parent componet to a specific location of the child componet.
+   This makes component more reuseable and customizable.
+
+-> It is act as a placeholder.
+*/ 

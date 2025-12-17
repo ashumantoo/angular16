@@ -7,13 +7,15 @@ import { WarningComponent } from './warning/warning.component';
 import { SuccessComponent } from './success/success.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { FormsModule } from '@angular/forms';
+import { LifecycleMethodsComponent } from './lifecycle-methods/lifecycle-methods.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WarningComponent,
     SuccessComponent,
-    DataBindingComponent
+    DataBindingComponent,
+    LifecycleMethodsComponent
   ],
   imports: [
     BrowserModule,

@@ -114,3 +114,26 @@
 
 -> It is act as a placeholder.
 */ 
+
+
+
+/*********************************************************************************************************************
+                                            COMPONENT LIFECYCLE
+**********************************************************************************************************************
+-> Constructor
+
+-> ngOnChanges()          : Called after a bound input property changes - means property which is bound with @Input() decorator
+
+-> ngOnInit()             : Called once the compoent is initialized
+
+-> ngDoCheck()            : Called multiple times - Called during every change detection runs
+
+-> ngAfterContentInit()   : Called after content(ng-content) has been projected into the view
+
+-> ngAfterContentChecked(): Called every time when the projected content has been checked.
+
+-> ngAfterViewInit()      : Called after the component's view and child view(content view) has been initialized
+
+-> ngAfterViewChecked()   : Called everyt time the view and child view has been checked.
+
+-> ngOnDestroy()          : Called once the component is about to destroy - genearally used for the cleanup work.

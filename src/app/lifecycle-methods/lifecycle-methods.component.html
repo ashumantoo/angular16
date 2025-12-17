@@ -1,0 +1,5 @@
+<h3>lifecycle-methods Example</h3>
+<input type="text" placeholder="username" [(ngModel)]="username">
+<button (click)="showName()">Show Name</button>
+
+<p *ngIf="shouldShow">{{name}} {{username}}</p>

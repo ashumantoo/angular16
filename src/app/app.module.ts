@@ -8,6 +8,8 @@ import { SuccessComponent } from './success/success.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { FormsModule } from '@angular/forms';
 import { LifecycleMethodsComponent } from './lifecycle-methods/lifecycle-methods.component';
+import { ParentComponentComponent } from './input-output/parent-component/parent-component.component';
+import { ChildComponentComponent } from './input-output/child-component/child-component.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { LifecycleMethodsComponent } from './lifecycle-methods/lifecycle-methods
     WarningComponent,
     SuccessComponent,
     DataBindingComponent,
-    LifecycleMethodsComponent
+    LifecycleMethodsComponent,
+    ParentComponentComponent,
+    ChildComponentComponent,
   ],
   imports: [
     BrowserModule,

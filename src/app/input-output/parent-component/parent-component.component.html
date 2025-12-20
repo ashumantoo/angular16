@@ -1,0 +1,13 @@
+<h3>@Input and @Output example</h3>
+<div class="container">
+  <div>
+    <input type="text" placeholder="Enter name" #nameInput>
+  </div>
+  <div>
+    <input type="text" placeholder="How you feeling?" #moodInput>
+  </div>
+  <div>
+    <button (click)="onGreet()">Greet</button>
+  </div>
+</div>
+<app-child-component *ngIf="showGreet" [greetingData]="data" (resetGreetingData)="onReset()"></app-child-component>

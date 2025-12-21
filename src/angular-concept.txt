@@ -137,3 +137,40 @@
 -> ngAfterViewChecked()   : Called everyt time the view and child view has been checked.
 
 -> ngOnDestroy()          : Called once the component is about to destroy - genearally used for the cleanup work.
+
+
+
+/*********************************************************************************************************************
+                                            RENDERER2 IN ANGULAR
+**********************************************************************************************************************
+ -> It is a class/service which provides an abstration layer to safely manipulating the DOM. It is recommended approach to directly
+    manipulate the DOM instead of using the native Javascript.
+
+ -> It provides the different methods which we can use to manipulate the DOM.
+    - createElement()
+    - appendChild()
+    - addClass()
+    - removeClass()
+    - setStyle()
+    - setAttributes()
+
+
+
+ /*********************************************************************************************************************
+                                 @HostListener() and @HostBinding Decorator
+**********************************************************************************************************************
+ -> @HostListener: 
+               - Allows us to subscribe to the event fired by the host element without writting the imperative
+                 code in the constructor or using Renderer@.listen().
+
+               - Whenever the specified event occures, the decorated method will be executed.
+
+ -> @HostBinding:
+              - Allows us to set the value of the property on the host element directly from your compoent or 
+                directive class.
+
+              - When the bound property of the class changes, Angular automatically updates the corresponding property
+                on the host element during the change detection.
+
+              - Ideal for dynamically updating the host element appearance for example applying a specific class, toggling 
+                an attribute or setting a style.               

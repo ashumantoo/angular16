@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { LifecycleMethodsComponent } from './lifecycle-methods/lifecycle-methods.component';
 import { ParentComponentComponent } from './input-output/parent-component/parent-component.component';
 import { ChildComponentComponent } from './input-output/child-component/child-component.component';
+import { ActiveUsersComponent } from './service-example/active-users/active-users.component';
+import { InactiveUsersComponent } from './service-example/inactive-users/inactive-users.component';
+import { CounterService } from './service-example/counter.service';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,15 @@ import { ChildComponentComponent } from './input-output/child-component/child-co
     LifecycleMethodsComponent,
     ParentComponentComponent,
     ChildComponentComponent,
+    ActiveUsersComponent,
+    InactiveUsersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

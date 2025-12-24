@@ -1,3 +1,26 @@
-.title{
+.title {
   text-align: center;
+}
+
+.main_nav {
+  background: #e0e4e3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main_nav li {
+  list-style: none;
+  padding: 8px 16px;
+}
+
+.main_nav li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+}
+
+.activeLink {
+  border-bottom: 2px solid #1d8874;
+  padding: 2px 4px;
 }

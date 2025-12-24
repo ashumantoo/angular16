@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* * {
+  padding: 0;
+  margin: 0;
+} */
+
+.user_link {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 4px;
+  display: inline-block;
+  color: rgb(50, 50, 224);
+}

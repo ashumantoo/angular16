@@ -3,16 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WarningComponent } from './warning/warning.component';
-import { SuccessComponent } from './success/success.component';
-import { DataBindingComponent } from './data-binding/data-binding.component';
+import { WarningComponent } from './basic/warning/warning.component';
+import { SuccessComponent } from './basic/success/success.component';
+import { DataBindingComponent } from './basic/data-binding/data-binding.component';
 import { FormsModule } from '@angular/forms';
-import { LifecycleMethodsComponent } from './lifecycle-methods/lifecycle-methods.component';
-import { ParentComponentComponent } from './input-output/parent-component/parent-component.component';
-import { ChildComponentComponent } from './input-output/child-component/child-component.component';
+import { LifecycleMethodsComponent } from './basic/lifecycle-methods/lifecycle-methods.component';
+import { ParentComponentComponent } from './basic/input-output/parent-component/parent-component.component';
+import { ChildComponentComponent } from './basic/input-output/child-component/child-component.component';
 import { ActiveUsersComponent } from './service-example/active-users/active-users.component';
 import { InactiveUsersComponent } from './service-example/inactive-users/inactive-users.component';
 import { CounterService } from './service-example/counter.service';
+import { BasicComponent } from './basic/basic.component';
+import { ServiceExampleComponent } from './service-example/service-example.components';
+import { FormExamplesComponent } from './form-examples/form-examples.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,11 @@ import { CounterService } from './service-example/counter.service';
     LifecycleMethodsComponent,
     ParentComponentComponent,
     ChildComponentComponent,
+    ServiceExampleComponent,
     ActiveUsersComponent,
     InactiveUsersComponent,
+    BasicComponent,
+    FormExamplesComponent
   ],
   imports: [
     BrowserModule,

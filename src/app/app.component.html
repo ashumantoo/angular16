@@ -2,19 +2,20 @@
   <h1>Hello Angular 16</h1>
 </div>
 <div>
-  <app-warning></app-warning>
-  <app-success></app-success>
-  <hr>
-  <app-data-binding></app-data-binding>
-  <hr>
-  <app-lifecycle-methods></app-lifecycle-methods>
-  <hr>
-  <app-parent-component></app-parent-component>
-  <hr>
-  <div style="margin-bottom: 30px;">
-    <h3>Service example</h3>
-    <app-active-users></app-active-users>
-    <app-inactive-users></app-inactive-users>
-  </div>
+
+  <nav>
+    <ul class="main_nav">
+      <li>
+        <a routerLink="/basic-concepts" routerLinkActive="activeLink">Basic</a>
+      </li>
+      <li>
+        <a routerLink="/service-example" routerLinkActive="activeLink">Service Example</a>
+      </li>
+      <li>
+        <a routerLink="/forms-example" routerLinkActive="activeLink">Forms Example</a>
+      </li>
+    </ul>
+  </nav>
+
   <router-outlet></router-outlet>
 </div>

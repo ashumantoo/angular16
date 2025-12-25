@@ -1,0 +1,168 @@
+<div class="p-4 border border-light bg-light" style="margin: 20px auto; width: 70%;">
+  <!-- 
+    => ngModel is acting as a directive here, and it works as form input control which is currently 
+      controlling the firstName input here. 
+    => ngModel reqires 'name' attributes on the input field to work correctly.    
+    => By using this way we can get the firstName input object inside the typescript file through Angular NgForm
+    
+    => Way of accessing the Angaulr form object
+      1. Method one:
+        => #personForm -> is called local reference of the form, it is also called template variable
+        => #personForm="ngForm" -> by this Angular will be able to give us the complete form object inside the Typescripte 
+          file. all form related properties and methods
+        => pass personForm variable to the ngSubmit function as argument.  
+
+     2. Method Two:
+       => using the @ViewChild decorator. e.g - @ViewChild(personForm) personForm: ngForm;     
+  -->
+
+  <!-- <form (ngSubmit)="onFormSubmit(personForm)" #personForm="ngForm"> -->
+
+  <!-- Using @ViewChild here, above is using template Variable -->
+  <form (ngSubmit)="onFormSubmit()" #personForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <!--
+         => #firstName="ngModel" is the local reference to the first name input, through this we can get the first name
+            input control where we can check the if the input data is valid or touched etc to display the proper error 
+            message
+
+            In general we can write like this #inputName="ngModel"
+        -->
+        <label for="inputFirstName">First Name</label>
+        <input type="text" class="form-control" id="inputFirstName" name="firstName" ngModel required
+          #firstName="ngModel">
+        <span *ngIf="firstName.invalid && firstName.touched" class="text-danger">First name is invalid.</span>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputLastName">Last Name</label>
+        <input type="text" class="form-control" id="inputLastName" name="lastName" ngModel>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="email" email ngModel required #email="ngModel">
+        <span *ngIf="email.invalid && email.touched" class="text-danger">Email is invalid.</span>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPhoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="inputPhoneNumber" name="phoneNumber" ngModel required
+          #phoneNumber="ngModel">
+        <span *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger">Phone number is invalid.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputDob">Date of Birth</label>
+      <input type="date" class="form-control" id="inputDob" placeholder="Enter date of birth" name="dob" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="">Gender</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male" ngModel required="">
+        <label class="form-check-label" for="maleRadio">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="female" ngModel required>
+        <label class="form-check-label" for="maleRadio">
+          Female
+        </label>
+      </div>
+    </div>
+    <!-- ngModelGroup: will store the address data inside address object. something like below
+         "address":{
+          address1:"",
+          address2:"",
+          city:"",
+          state:"",
+          country:"",
+          zipcode:""
+         }
+        
+        => On ngModelGroup, we can also get the reference of the element using the #address="ngModelGroup" 
+    -->
+    <div id="person-Address" ngModelGroup="address" #address="ngModelGroup">
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address1" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+          name="address2" ngModel>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" name="city" ngModel>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputState">State</label>
+          <select id="inputState" class="form-control" name="state" ngModel>
+            <option value="">Select state</option>
+            <option *ngFor="let state of states;">{{state}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputZip">Zipcode</label>
+          <input type="text" class="form-control" id="inputZip" name="zipcode" ngModel>
+        </div>
+        <div class="form-group col-md-6">
+          <!-- 
+         => Using ngModel with property binding like this [ngModel] = "countryDefaultValue"
+            Here I am setting the default value for the input here it is contry
+        -->
+          <label for="Country">Country</label>
+          <input type="text" class="form-control" id="Country" name="country" [ngModel]="countryDefaultValue">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck" name="consent" ngModel required
+          #consent="ngModel">
+        <label class="form-check-label" for="gridCheck">
+          Confirm your consent before submitting the data.
+        </label>
+        <div>
+          <span *ngIf="consent.invalid && consent.touched" class="text-danger">Please check the confirmation
+            checkbox.</span>
+        </div>
+      </div>
+    </div>
+    <!--
+      => Using [(ngModel)]="aboutValue" for two way data binding to display the entered value for about yourself field.
+
+
+      ***** Very Important node
+      => ngMode can be used as
+             - Attribute directive : ngModel
+             - Propterty binding   : [ngModel]
+             - Two way data binding: [(ngModel)]
+    -->
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">About yourself</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write..."
+        name="aboutYourself" [(ngModel)]="aboutValue"></textarea>
+    </div>
+    <p>You have entered: {{aboutValue}}</p>
+    <button type="submit" class="btn btn-primary" [disabled]="!personForm.valid">Submit</button>
+  </form>
+</div>
+
+<div class="row p-4 border border-light bg-light" style="margin: 20px auto; width: 70%;" *ngIf="formSubmitted">
+  <div class="col-xs-12">
+    <h3>The submitted Data</h3>
+    <p>First Name:{{personFormData.firstName}} </p>
+    <p>Last Name: {{personFormData.lastName}}</p>
+    <p>Email: {{personFormData.email}}</p>
+    <p>Mobile Number: {{personFormData.phoneNumber}}</p>
+    <p>Date of Birth: {{personFormData.dob}}</p>
+    <p>Gender: {{personFormData.gender}}</p>
+    <p>About yourself: {{personFormData.aboutYourself}}</p>
+  </div>
+</div>

@@ -1,1 +1,6 @@
-<p>form-examples works!</p>
+<div class="btn_container">
+  <button (click)="goToTemplateDrivernform()" [ngClass]="{'active-btn': isTemplateFormActive}">Template Driven
+    Form</button>
+  <button (click)="goToReactiveform()" [ngClass]="{'active-btn': isReactiveFormActive}">Reactive form</button>
+</div>
+<router-outlet></router-outlet>

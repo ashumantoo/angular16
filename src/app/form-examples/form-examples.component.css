@@ -1,0 +1,27 @@
+.btn_container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn_container button {
+  background-color: aquamarine;
+  border: none;
+  color: rgb(14, 12, 12);
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.btn_container button:hover{
+  cursor: pointer;
+  background-color: #5ae1b4;
+  scale: 1.01;
+}
+
+.active-btn {
+  background-color: #850365 !important;
+  color: white !important;
+}

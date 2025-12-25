@@ -16,6 +16,8 @@ import { CounterService } from './service-example/counter.service';
 import { BasicComponent } from './basic/basic.component';
 import { ServiceExampleComponent } from './service-example/service-example.components';
 import { FormExamplesComponent } from './form-examples/form-examples.component';
+import { TemplateDrivenFormComponent } from './form-examples/template-driven-form/template-driven-form.component';
+import { ReactiveFormComponent } from './form-examples/reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,14 @@ import { FormExamplesComponent } from './form-examples/form-examples.component';
     ActiveUsersComponent,
     InactiveUsersComponent,
     BasicComponent,
-    FormExamplesComponent
+    FormExamplesComponent,
+    TemplateDrivenFormComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule //FormModule required to import, to work with the form otherwise it will not work
   ],
   providers: [CounterService],
   bootstrap: [AppComponent]

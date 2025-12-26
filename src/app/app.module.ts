@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { WarningComponent } from './basic/warning/warning.component';
 import { SuccessComponent } from './basic/success/success.component';
 import { DataBindingComponent } from './basic/data-binding/data-binding.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LifecycleMethodsComponent } from './basic/lifecycle-methods/lifecycle-methods.component';
 import { ParentComponentComponent } from './basic/input-output/parent-component/parent-component.component';
 import { ChildComponentComponent } from './basic/input-output/child-component/child-component.component';
@@ -39,7 +39,8 @@ import { ReactiveFormComponent } from './form-examples/reactive-form/reactive-fo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule //FormModule required to import, to work with the form otherwise it will not work
+    FormsModule, //FormModule required to import, to work with the form otherwise it will not work
+    ReactiveFormsModule, //Required To work with the reactive forms
   ],
   providers: [CounterService],
   bootstrap: [AppComponent]

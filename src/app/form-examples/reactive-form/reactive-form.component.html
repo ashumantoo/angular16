@@ -1,1 +1,117 @@
-<p>reactive-form works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--
+       => In Reactive form, we use [fromGroup] directive to bind to the our from created in typescript file by passing 
+          from variable defined in typescript file.
+          
+       => To bind the every input from control we use fromControlName in from created inside the typescript 
+          file using reactive from approach.
+       
+       => There are 2 wasy define the fromControlName,
+          1, fromControlName="email" -> without [], but passing property value in string
+          2. [fromControlName] = "'email'" -> with [], but passing property value in single quote inside the double quote
+
+       => To get validation property like invalid, touched, pristine etc from the input we will use something like this
+          "signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
+          where
+           - signUpFrom -> is the from name created in typescript file
+           - get        -> is the function on the ngForm to access a input control
+           - username   -> is the name of the control by which we can access the input
+           
+       => To access the nested input control we can use   "signupForm.get('address.street')?.invalid && signupForm.get('address.street')?.touched"
+      -->
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" formControlName="username">
+          <span class="help-block text-danger"
+            *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">Username is
+            required</span>
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="text" id="email" class="form-control" [formControlName]="'email'">
+          <span class="help-block text-danger"
+            *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">Please enter valid
+            email.</span>
+        </div>
+        <div class="form-group">
+          <label for="">Gender</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male"
+              formControlName="gender">
+            <label class="form-check-label" for="maleRadio">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="female"
+              formControlName="gender">
+            <label class="form-check-label" for="maleRadio">
+              Female
+            </label>
+          </div>
+        </div>
+        <!-- Use fromGroupName directive to define the object control -->
+        <div id="person-Address" formGroupName="address">
+          <p>Address</p>
+          <div class="form-group">
+            <label for="inputAddress">Street</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+              formControlName="street">
+            <span class="help-block text-danger"
+              *ngIf="signupForm.get('address.street')?.invalid && signupForm.get('address.street')?.touched">Street is
+              required.</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity" name="city" formControlName="city">
+              <span class="help-block text-danger"
+                *ngIf="signupForm.get('address.city')?.invalid && signupForm.get('address.city')?.touched">City is
+                required.</span>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control" name="state" formControlName="state">
+                <option value="">Select state</option>
+                <option *ngFor="let state of states;">{{state}}</option>
+              </select>
+              <span class="help-block text-danger"
+                *ngIf="signupForm.get('address.state')?.invalid && signupForm.get('address.state')?.touched">State is
+                required.</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputZip">Zipcode</label>
+              <input type="text" class="form-control" id="inputZip" name="zipcode" formControlName="zipcode">
+              <span class="help-block text-danger"
+                *ngIf="signupForm.get('address.zipcode')?.invalid && signupForm.get('address.zipcode')?.touched">Street
+                is
+                required.</span>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Country">Country</label>
+              <input type="text" class="form-control" id="Country" name="country" formControlName="country">
+              <span class="help-block text-danger"
+                *ngIf="signupForm.get('address.country')?.invalid && signupForm.get('address.country')?.touched">Street
+                is
+                required.</span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4" formArrayName="hobbies">
+          <h4>Your hobbies</h4>
+          <button class="btn btn-default" type="button" (click)="onAddHubby()">Add Hobby</button>
+
+          <div class="from-group" *ngFor="let hubbyControl of hobbiesControls; let i = index;">
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

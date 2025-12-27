@@ -1,0 +1,106 @@
+***********************************************
+What is RxJS and Why RxJS in Angular?
+
+      => RxJS stands for Reactive Extension for Javascript.
+
+      => A way to handle asynchronous operations, events and data streams.
+
+      => Heavily used in Angular's core features (like httpClient, FromControls.valueChanges, and routing) all uses RxJS under the hood.
+
+
+**********************************************
+Why RxJS in Angular?
+
+     => Working with HTTP: All httpClient methods return Observables
+
+     => From input tracking: valueChanges returns an Observables.
+
+     => Route parameters: ActivatedRoute.paraMap is an Observables.
+
+     => State management: RxJS is the foundation of library like NgRx.
+
+     => Building Responsive UI: You can react to user inputs, data changes, and server responses easily using RxJS.
+
+
+
+*********************************************
+What is Observable?
+
+      => Observable is something which continuously emits the data over the time.
+
+      => They can complete, error out, or Keep streaming the data.
+
+      => We need to subscribe to start receiving the values.
+
+      => All subscribed Observable must needs to be Unsubscribed other memmory leake will happen.
+
+
+
+*******************************************
+Creating and Subscribing to Observable
+
+      => of, from, interval, timer, fromEvent, map, filter, pipe, tap etc
+
+
+
+
+*******************************************
+Subject and Behaviour Subject
+
+      => Subject: It is a special type of Observable that allows value to be multicasted to the multiple observer.
+
+      => While plain Observable is unicast(Each Subscribed Observer owns an independent execution of the Observable)
+
+      => Behaviour Subject is a varient of the Subject which has notion of the current value.
+
+      => It alwasy stored the latest value emitted to its consumer, and whenever a new Observer subscribes, it will 
+         immediately recive the current value from the Behaviour Subject
+
+
+
+***********************************************
+Difference between Subject & Behaviour Subject
+
+Subjects:
+      => It is an Observable
+
+      => Subject doesn't accept any initial value while creating a subject.
+
+      => A component where we have subscribed the subject to recive the value/data, the component should load on 
+         the UI then only will recive the latest data otherwise not.
+
+
+Behaviour Subject:
+      => It is also an Observable.
+
+      => We can set the initial value of a Behaviour Subject
+
+      => We can receive the latest data/value from the Behaviour subject event if the Component which has subscribe
+         not loaded into the UI. 
+
+
+*************************************************
+FrokJoin Operator:
+      => It is accepts an array of observables and returns a single Observable containing the values of all observables in an array.
+      => The return data is the same sequence in which the Observable was passed.
+      => This gets completed if all the observables gets complted.
+      => If any observable(s) fails then it will go to the error block.
+      => This is similar to Promise.all([]) in Javascript.
+
+
+SwitchMap Operator:
+      => It only executes the last observable.
+      => For example, for a search query, while typing in the input, if we have written our logic to make an api call on entering the each character
+         in search input. By using the SwitchMap we can discard all the initial characters until a full text has been entered into the input and only
+         with the last enter value the api call will happen
+
+MergeMap Operator:
+
+
+
+ConcatMap Operator:
+
+
+
+
+exhustMap Operator:

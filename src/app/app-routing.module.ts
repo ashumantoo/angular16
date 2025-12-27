@@ -5,6 +5,7 @@ import { ServiceExampleComponent } from './service-example/service-example.compo
 import { FormExamplesComponent } from './form-examples/form-examples.component';
 import { TemplateDrivenFormComponent } from './form-examples/template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './form-examples/reactive-form/reactive-form.component';
+import { RxjsExampleComponent } from './rxjs-example/rxjs-example.component';
 
 const routes: Routes = [
   { path: 'basic-concepts', component: BasicComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'template-driven-forms', component: TemplateDrivenFormComponent },
       { path: 'reactive-forms', component: ReactiveFormComponent }
     ]
-  }
+  },
+  { path: 'rxjs-example', component: RxjsExampleComponent }
 ];
 
 @NgModule({

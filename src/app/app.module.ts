@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,10 @@ import { ServiceExampleComponent } from './service-example/service-example.compo
 import { FormExamplesComponent } from './form-examples/form-examples.component';
 import { TemplateDrivenFormComponent } from './form-examples/template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './form-examples/reactive-form/reactive-form.component';
+import { RxjsExampleComponent } from './rxjs-example/rxjs-example.component';
+import { RxJSBasicComponent } from './rxjs-example/rxjs-basic/rxjs-basic.component';
+import { RxjsOperatorsComponent } from './rxjs-example/rxjs-operators/rxjs-operators.component';
+import { RxjsSubjectsComponent } from './rxjs-example/rxjs-subjects/rxjs-subjects.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +39,18 @@ import { ReactiveFormComponent } from './form-examples/reactive-form/reactive-fo
     BasicComponent,
     FormExamplesComponent,
     TemplateDrivenFormComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    RxjsExampleComponent,
+    RxJSBasicComponent,
+    RxjsOperatorsComponent,
+    RxjsSubjectsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, //FormModule required to import, to work with the form otherwise it will not work
-    ReactiveFormsModule, //Required To work with the reactive forms
+    ReactiveFormsModule, //Required To work with the reactive forms,
+    HttpClientModule
   ],
   providers: [CounterService],
   bootstrap: [AppComponent]

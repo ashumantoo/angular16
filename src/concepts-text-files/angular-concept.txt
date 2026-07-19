@@ -1,4 +1,173 @@
+/************************************************************************************************************
+                                 What is Angular
+ ***********************************************************************************************************
+  -> Frontend Javascript Framework
+
+  -> Single Page Application Framework
+
+  -> Component based architecture
+
+  -> Developed and Maintaned by Google
+
+*/ 
+
+/************************************************************************************************************
+                              Pros anc Cons of Angular
+ ***********************************************************************************************************
+  Pros:
+   -> Complete Frontend Framework (Not Just library)
+
+   -> Best for large and Enterprise Level application
+
+   -> Fast Loading and Development time
+
+   -> Developed and backed by Google
+
+   -> Large Commiunity
+
+  Cons:
+   -> Not good for small and medium level application
+   -> Requires little bit more effort to develop the application  
+*/ 
+
+/************************************************************************************************************
+                                 ANGULAR ARCHITECURE
+ ***********************************************************************************************************
+  Angular architecture is a component driven architecture to build scalable single page application. In Modern
+  Angular version, Angular has been introduce a light weight standalone component architecture.
+
+  -> Core Architecture Building Blocks
+     1. Coponent and Template: meta data @componet decorator Typescript class, html template and css style
+     2. Standalone Application Tree
+     3. Data Interaction and Reactivity: Property binding, event binding, string interpolation, signals
+     4. Directives and Pipes: Structural Directive, Attribute Directives, Pipes etc
+     5. Service and Dependancy Injection: 
+
+  -> Data Flow Overview:
+
+     [ HTTP Data Service ]  ---> ( Injected via DI ) --->  [ TypeScript Component Class ]
+                                                                |
+                                                      ( Signal / Data Binding )
+                                                                v
+     [ User UI Layout ]   <--- ( Event Binding Trigger ) <--- [ HTML Template Engine ]     
+
+*/ 
+
+
+/************************************************************************************************************
+                                        AOT and JIT Compiler
+ ***********************************************************************************************************
+ -> Why Angular needs a compiler?
+    In Angular, we writtes code in Typescript and Html, whereas the the browser does not understand typescript
+    that's why Angular need a compiler to compile the code into JavaScript.
+
+ -> Types of Compiler in Angular
+    1. JIT : was default compiler till version 8
+      - Compilation happens at the runtime in the Browser.
+      - Compiler is included in the application bundle when send to the browser.
+      - Load time is slow since compliler is included in the application bundle.
+      - Bundle size is large since compiler included.
+      - Security issue: more vulnerable to runtime Injection.
+
+    2. AOT : Default compiler after version 9
+      - Compilation happens during the build time/process 
+      - Compiler is not included in the application bundle.
+      - Fast Load time since compiler not included.
+      - Small application bundle size.
+      - More secure due to early validation.
+*/
+
+
+/************************************************************************************************************
+                              COMPONENT RENDERING IN ANGULAR
+ ***********************************************************************************************************
+  -> In Angular, component rendering works by compiling HTML templates into JavaScript instructions (Ivy code) 
+     that directly manipulate the DOM when application state changes.
+
+  -> Lview(Logic view): A tree like data structure, Angular uses to keep track of the snapshot of component/DOM
+                        and on re-rendering angular compare the current changes with the prev Lview tree to identify
+                        the dom update.
+
+  *** -> IVY in Angular: Angular compilation and rendering Engine designed to transform Typescript & Html code to JS.
+
+  *** -> Tree Shaking: Tree shaking is the process of removing unused code from your final production bundle so 
+                       users don't download dead scripts. Ivy makes this highly effective.                   
+
+  1. Compilation Phase:
+
+      -> AOT(Ahead of time) compiler perform the following task
+          - reads the @component decorator, template markup and style.
+          - the html template markup is converted into plain JavaScript instructions with the help of ivy instructions
+          - the resulting code is structured into the "Create" and "Update" block on the UI
+
+  2. Initial Render:
+     - Instantiation
+     - Creation pass - Ivy instructions
+     - Logical View (Lview) Data structure created
+     - Host element inserted into the dom       
+
+  3. Change Detection and UI updates (Re-rendering)
+
+      Phase Feature                         Default Strategy                         OnPush Strategy/Signals
+
+      Trigger Mechanism           Monitored globally by Zone.js via
+                                  browser macro/micro tasks.                         Directly flagged as dirty by reactive primitives or event firings.
+
+      Traversal Path              Scans every component from root to 
+                                  leaf on every tick.                                Skips stable subtrees entirely; only checks paths explicitly marked dirty.
+
+      DOM Execution               Executes the Ivy "Update" block to 
+                                  compare template state vs. current values.         Targets precise template bindings tied to changed data.                           
+*/  
+
+
+/************************************************************************************************************
+                              CHANGE DETECTION IN ANGULAR
+ ***********************************************************************************************************
+ *** Historically, Angular relies on Zone.js, a library that monkeys-patches these asynchronous browser APIs 
+     so Angular knows exactly when an event finishes and when it needs to scan the component tree.
+
+  1. How Change Detection is Triggered
+     - User Events: Button click, typing in a input etc
+     - XMLHttpRequests: Fetching data from a backend API or server.
+     - Timers: Asynchronous native browser API triggers like setTimeout() or setInterval()
+
+
+  2. The Internal Detection Mechanics
+     - [State Changes] ──> [Ivy Update Block Executes] ──> [Compare New Value vs. LView Cache] ──> [Direct DOM Patch]   
+
+  3. Change Detection Strategies
+     - You can configure how aggressively Angular checks your components by modifying the changeDetection property in 
+       the @Component decorator.   
+
+       Feature                         ChangeDetectionStrategy.Default                   ChangeDetectionStrategy.OnPush
+
+   Component Scanning            Always checked during every single change          Skipped entirely unless explicitly marked                                                                                
+                                 detection cycle across the app.                     as "dirty" or requiring a check
+
+   Trigger Criteria             Any asynchronous event anywhere in the              Only when an @Input() reference changes, an event
+                                application.                                        originates inside the component, or an async pipe emits.
+
+   Performance Profile          Easy to develop, but becomes slow and heavy        Highly optimized; prevents unnecessary rendering across
+                                in large scale applications.                       stable parts of the DOM.
+
+  *** Note: Drawback of zone.js 
+      - It was 3rd partiy library
+      - On every re-render all the it was traversing through all the components from top to bottom. Time Comsuming and slow.
+      - Bunder size was large
+
+  4. The Signal-Based Future (Zone-less)
+     - In modern Angular, Signals introduce a reactive primitive that shifts change detection from global tree-walking to granular, targeted updates.
+     - No more ZoneJS
+     - Producer/Consumer Relationship: When a Signal value shifts, it knows exactly which components read that specific Signal.
+     - Targeted Notification: Instead of scanning from the top root down to find what changed, Angular can directly mark the exact component 
+       containing the Signal as dirty and update it independently.                              
+*/  
+
+
 /***************************************************************************************************************
+                                                DATA BINDING
+****************************************************************************************************************
   -> Data Binding:- It is a way to bind the data (variables, array, object etc) defined your typescript code to 
     the your html template vice versa.
 
@@ -7,6 +176,18 @@
     2. Property Binding    : [property]="data"
     3. Event Binding       : (event)="expression"    (expression = function)
     4. Two Way Binding     : [(ngModel)] = "data" 
+
+
+  -> $event : $event is a special variable that captures and passes the event payload emitted by a DOM element 
+              or a child component
+
+   E.g. <input type="text" placeholder="Person name" (input)="onAddNewPerson($event)">
+        <button (click)="clickMe($event)">Click Me</button>
+         <form (submit)="onSubmit($event)">
+            <input type="text" name="email">
+            <button type="submit">Submit</button>
+         </form>
+        
  */
 
 
@@ -31,9 +212,9 @@
                                 adding, removing, or manipulating elements based on conditions. They are identified 
                                 by an asterisk (*) prefix in the template shorthand syntax.
         Built In Structural Directives 
-        *ngIf
-        *ngFor
-        *ngSwitch
+        *ngIf / @if, @else
+        *ngFor / @for
+        *ngSwitch / @switch
 */
 
 
@@ -95,7 +276,7 @@
 
  -> It has 3 different options:-
     a) ViewEncapsulation.Emulated (Default) - Styles defined under the component doesn't affect the other component Styles
-                                              but styles defined under the global styles will might sitll affect.
+                                              but styles defined under the global styles will might still affect.
     b) ViewEncapsulation.ShadowDom - Style will only apply to the component itself - uses ture shadow dom technique
 
     c) ViewEncapsulation.None - No restriction any styles can be applied to any compoent's view 
@@ -174,3 +355,21 @@
 
               - Ideal for dynamically updating the host element appearance for example applying a specific class, toggling 
                 an attribute or setting a style.               
+
+
+ /*********************************************************************************************************************
+                                 @HostListener() and @HostBinding Decorator
+**********************************************************************************************************************
+   -> Performance Optimization
+      1. Loading Performance 
+         - Lazy Loading Routes
+         - Lazy loading services with injectAsync
+         - OnPush Change Detection Dachanism instead of Default.
+         - TrackBy
+         - Deferred loading with @defer
+         - Image Optimization
+         - Server-side rendering
+
+      2. Runtime Performance
+         - Zoneless change detection : Use Signals instead
+         - Slow computations: Identifies and optimizes expensive template expressions and lifecycle hooks   

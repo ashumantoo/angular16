@@ -51,10 +51,19 @@ Subject and Behaviour Subject
 
       => While plain Observable is unicast(Each Subscribed Observer owns an independent execution of the Observable)
 
-      => Behaviour Subject is a varient of the Subject which has notion of the current value.
+      => Behaviour Subject is a varient of the Subject which, we have to pass an initial value.
+
+      => Subject and Behaviour Subject, Generally we create them in a service file so that it can be subscribed by
+         other compoent. But it can also be created inside a component if Required.
 
       => It alwasy stored the latest value emitted to its consumer, and whenever a new Observer subscribes, it will 
          immediately recive the current value from the Behaviour Subject
+
+      EXAMPLE: 
+      
+            studentName$ = new Subject();   //Subject
+
+            userRole = new BehaviorSubject<string>("ADMIN"); // BehaviorSubject
 
 
 
